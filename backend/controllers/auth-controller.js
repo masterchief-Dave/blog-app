@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 const AppError = require('../utils/app-error')
 const catchAsync = require('../utils/catch-async')
 const User = require('./../models/user')
+const Email = require('./../utils/Email')
+const crypto = require('crypto')
 
 const signToken = (id) => {
   const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -20,10 +22,17 @@ exports.signup = catchAsync(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm
   })
 
-  console.log(user)
-  console.log('the got here')
   if (!user) return next(new AppError('Error creating user', '401'))
 
+  const activateToken = user.createAccountActivate()
+  console.log(activateToken)
+  await user.save({ validateBeforeSave: false })
+  const url = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/activate/${activateToken}`
+
+  // send email part
+  new Email(user, url).sendWelcome()
   const token = signToken(user._id)
 
   res.status(200).json({
@@ -35,12 +44,47 @@ exports.signup = catchAsync(async (req, res, next) => {
   })
 })
 
+exports.activate = catchAsync(async (req, res, next) => {
+  // some code
+  // 1, get the token from the link
+  // 2, hash the token
+  // 3, use the hashed token to look for the person in the database
+  // change the active property from false to true
+  const token = req.params.id
+  const hashedToken = crypto.createHash('sha256').update(token).digest('hex')
+  // console.log(hashedToken)
+
+  const user = await User.findOne({
+    accountActivateToken: hashedToken
+  })
+  // console.log(user)
+  user.active = true
+  await user.save({ validateBeforeSave: false })
+
+  res.status(200).json({
+    message: 'account verified',
+    data: {
+      user
+    }
+  })
+})
+
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body
   const user = await User.findOne({ email: email }).select('+password')
 
+  console.log(user)
+
+  if (!user.active)
+    return next(new AppError('Please activate your account', '401'))
+
   if (!user)
-    return next(new AppError('User not found, please create an account', '404'))
+    return next(
+      new AppError(
+        'User not found, please create an account / activate your account ',
+        '404'
+      )
+    )
 
   const auth = await user.comparePassword(password)
   if (!auth)
@@ -97,22 +141,70 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   const email = req.body.email
   if (!email)
     return next(new AppError('Please provide a valid email address', '400'))
-  // I check if that email exists in my database
+
   const user = await User.findOne({ email: email })
   if (!user)
     return next(new AppError('User not found, create an account', '401'))
-  // I create a token and encrypt it
-  const token = user.createPasswordResetToken()
 
-  // I save the encrypted one to the database
-  // I set a time to the database to expire the token after 10 minutes
+  const resetToken = user.createPasswordResetToken()
+
   user.passwordResetTokenExpires = new Date().getTime()
-  await user.save()
-  // if a user with the email exists then I compose an email and send a token with the mail to reset to the user
+  await user.save({ validateBeforeSave: false })
+
+  const url = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/resetpassword/${resetToken}`
   // send Email
+  new Email(user, url)
+    .sendPasswordReset()
+    .then(() => {
+      res.status(200).json({
+        status: 'success',
+        message: 'Reset email sent!'
+      })
+    })
+    .catch(async (err) => {
+      console.log(err)
+      user.createPasswordResetToken = undefined
+      user.passwordResetTokenExpires = undefined
+      await user.save({ validateBeforeSave: false })
+      res.status(200).json({
+        status: 'fail',
+        message: 'Error sending reset email, try again!'
+      })
+    })
 })
 
 exports.resetPassword = catchAsync(async (req, res, next) => {
   //the user provides the new password and password confirm
-  //
+  const { password, passwordConfirm } = req.body
+
+  const hashedToken = crypto
+    .createHash('sha256')
+    .update(req.params.id)
+    .digest('hex')
+  const user = await user.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetTokenExpires: { $gt: Date.now() }
+  })
+
+  if (!user) return next(new AppError('No user found', '404'))
+
+  user.password = password
+  user.passwordConfirm = passwordConfirm
+  user.passwordResetToken = undefined
+  user.passwordResetTokenExpires = undefined
+  user.passwordChangedAt = new Date().getTime()
+
+  await user.save()
+
+  const token = signToken(user._id)
+
+  res.status(200).json({
+    message: 'success',
+    data: {
+      user
+    },
+    token
+  })
 })

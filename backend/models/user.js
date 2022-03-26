@@ -23,12 +23,13 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     minlength: 6,
-    required: [true, 'A user should have a password'],
-    select: false
+    required: [true, 'A user should have a password']
+    // select: false
   },
   passwordConfirm: {
     type: String,
     required: [true, 'please confirm password'],
+    trim: true,
     validate: {
       validator: function (value) {
         return this.password === value
@@ -43,13 +44,14 @@ const userSchema = new mongoose.Schema({
   },
   active: {
     type: Boolean,
-    default: true
+    default: false
   },
   passwordChangedAt: {
     type: Date
   },
   passwordResetToken: String,
-  passwordResetTokenExpires: Date
+  passwordResetTokenExpires: Date,
+  accountActivateToken: String
 })
 
 userSchema.pre('save', async function (next) {
@@ -68,8 +70,9 @@ userSchema.methods.comparePassword = async function (password) {
 }
 
 userSchema.methods.passwordChangedAfter = function (val) {
-  if (this.password.passwordChangedAt > val) {
-    return true
+  if (this.passwordChangedAt) {
+    const auth = this.passwordChangedAt > val
+    return auth
   }
   return false
 }
@@ -81,8 +84,26 @@ userSchema.methods.createPasswordResetToken = function () {
     .update(token)
     .digest('hex')
 
+  this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000
+
   return token
 }
+
+userSchema.methods.createAccountActivate = function () {
+  const token = crypto.randomBytes(32).toString('hex')
+  this.accountActivateToken = crypto
+    .createHash('sha256')
+    .update(token)
+    .digest('hex')
+
+  return token
+}
+
+// userSchema.pre(/^find/, function (next) {
+//   this.find({ active: { $ne: false } })
+
+//   next()
+// })
 
 const User = mongoose.model('User', userSchema)
 
