@@ -208,3 +208,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     token
   })
 })
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  // some code
+})

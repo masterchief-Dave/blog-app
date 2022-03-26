@@ -12,13 +12,6 @@ let html = fs
   .readFileSync(path.join(`${__dirname}/../views/emails/welcome.html`), 'utf-8')
   .toString()
 
-let reset = fs
-  .readFileSync(
-    path.join(`${__dirname}/../views/emails/passwordreset.html`),
-    'utf-8'
-  )
-  .toString()
-
 class Email {
   constructor(user, url) {
     this.url = url
@@ -47,15 +40,40 @@ class Email {
     welcomeHtml = welcomeHtml.replace('{header}', 'Account Verification')
     welcomeHtml = welcomeHtml.replace('{firstName}', this.firstName)
     welcomeHtml = welcomeHtml.replace('{link}', this.url)
-
+    welcomeHtml = welcomeHtml.replace(
+      '{intro}',
+      "Welcome to Blog-app 🥳, we're glad to have you"
+    )
+    welcomeHtml = welcomeHtml.replace(
+      '{desc}',
+      'we are a family here, kindly activate your account by clicking on the link below'
+    )
+    welcomeHtml = welcomeHtml.replace('{link-text}', 'Activate the account')
+    welcomeHtml = welcomeHtml.replace(
+      '{final-text}',
+      'Activate your email to verify it is really you and gain access to amazing features ! 😉.'
+    )
     await this.send(welcomeHtml, 'Welcome 🎈🎊')
   }
 
   async sendPasswordReset() {
-    let resetHtml = reset
+    let resetHtml = html
     resetHtml = resetHtml.replace('{header}', 'Reset Password')
     resetHtml = resetHtml.replace('{firstName}', this.firstName)
     resetHtml = resetHtml.replace('{link}', this.url)
+    resetHtml = resetHtml.replace(
+      '{intro}',
+      'We recieved a request from you to reset your password, kindly follow the link below to reset your password.'
+    )
+    resetHtml = resetHtml.replace(
+      '{desc}',
+      'Reset your password by clicking the link and follow the instructions.'
+    )
+    resetHtml = resetHtml.replace('{link-text}', 'Reset password')
+    resetHtml = resetHtml.replace(
+      '{final-text}',
+      'If you did not request to reset your password, kindly ignore this message. Thanks ! 😃'
+    )
 
     await this.send(resetHtml, 'Reset password')
   }
