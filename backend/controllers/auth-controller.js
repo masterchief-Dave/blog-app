@@ -210,5 +210,30 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 })
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
-  // some code
+  const user = await User.findById(req.user._id).select('+password')
+  if (!user)
+    return next(
+      new AppError(
+        'cannot access this resource, login to update password',
+        '400'
+      )
+    )
+
+  const { oldPassword, password, passwordConfirm } = req.body
+
+  const auth = user.comparePassword(oldPassword)
+  if (!auth) return next('password is not correct', '401')
+
+  user.password = password
+  user.passwordConfirm = passwordConfirm
+  user.passwordChangedAt = new Date().getTime()
+  await user.save()
+
+  const token = signToken(user._id)
+  res.status(200).json({
+    message: 'success',
+    data: {
+      user
+    }
+  })
 })

@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer')
 const path = require('path')
 const fs = require('fs')
+const htmlToText = require('html-to-text')
 require('dotenv').config({
   path: './../.env'
 })
@@ -83,7 +84,7 @@ class Email {
       from: this.from,
       to: this.to,
       subject: subject,
-      text: '',
+      text: htmlToText.convert(template),
       html: template
     }
     return await this.transport().sendMail(mailOptions)
