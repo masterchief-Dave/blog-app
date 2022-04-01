@@ -2,12 +2,18 @@ main {
   padding: 0 40px;
   margin-top: 55px;
   margin-bottom: 40px;
+  /* background-color: #02060B; */
+}
+
+img {
+  object-fit: contain;
 }
 
 #header {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #02060b;
   font-family: 'Montserrat';
   font-weight: 600;
+  color: #30343f;
 }
 
 #commit {
@@ -22,7 +28,8 @@ main {
 
 .subscribe {
   width: 48%;
-  border-bottom: 1px solid #000;
+  /* border-bottom: 1px solid #fafaff; */
+  border-bottom: 1px solid #02060b;
   display: flex;
   align-items: center;
   padding-bottom: 3px;
@@ -33,10 +40,29 @@ main {
   text-decoration: none;
   font-size: 12px;
   margin-right: auto;
+  /* color: #FED18C; */
+  /* color: #d49c6b; */
+  color: #18272f
+}
+
+.subscribe_link:hover{
+  color: #d49c6b;
+}
+
+#main_article {
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #02060b;
+}
+
+#main_article:not(:first-child) {
+  margin-top: 30px;
 }
 
 #categories h3 {
-  border-bottom: 1px solid #000;
+  /* color: #fafaff; */
+  color: #30343f;
+  border-bottom: 1px solid #02060b;
   padding-bottom: 17px;
   margin-bottom: 20px;
   font-family: montserrat;
@@ -49,11 +75,12 @@ main {
 }
 
 .categories_list a {
-  font-family: montserrat;
+  font-family: 'Merriweather sans';
   font-weight: bolder;
   position: relative;
   text-decoration: none;
   padding-bottom: 4px;
+  color: #d49c6b;
 }
 
 .categories_list a::before {
@@ -75,7 +102,36 @@ main {
   transform: scaleX(1);
 }
 
+#content_header {
+  font-family: 'Merriweather sans';
+  font-weight: 200;
+}
+
+/* style the link when it is hovered  */
+.article_link:hover {
+  border-bottom: 1px solid #18272f;
+  color: #5e666b;
+}
+
+.article_link {
+  color: #18272f;
+  transition: all 0.4s ease;
+}
+
+#content_intro,
+#content_date {
+  color: #30343f;
+  font-family: montserrat;
+  font-size: 13px;
+  font-weight: bolder;
+}
+
+/* @ media queries */
 @media screen and (max-width: 767px) {
+  main {
+    padding: 0 50px;
+  }
+
   #header {
     font-size: 34px;
     line-height: 40px;
@@ -89,7 +145,6 @@ main {
 
   .categories_list {
     display: grid;
-
     column-gap: 5%;
     padding: 10px;
     grid-template-columns: repeat(2, 1fr);
@@ -101,12 +156,36 @@ main {
     margin-bottom: 20px;
     margin-top: 40px;
   }
+
+  #content_text {
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  #content_intro,
+  #content_date {
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: bolder;
+  }
+
+  .subscribe_link{
+    font-size: 12px;
+    font-weight: 200;
+    font-family: 'Merriweather sans';
+  }
+
 }
 
 @media screen and (min-width: 768px) {
+  main {
+    padding: 0 60px;
+  }
+
   #header_content {
     display: flex;
-    border-bottom: 1px solid #000;
+    /* border-bottom: 1px solid #fafaff; */
+    border-bottom: 1px solid #02060b;
     margin-bottom: 50px;
     padding-bottom: 6px;
     align-items: baseline;
@@ -129,6 +208,12 @@ main {
     width: auto;
   }
 
+  .subscribe_link{
+    font-family: 'Merriweather sans';
+    margin-right: 10px;
+    font-weight: 300;
+  }
+
   #content {
     display: flex;
     column-gap: 20px;
@@ -136,7 +221,77 @@ main {
   }
 
   #articles {
-    width: 70%;
+    width: 65%;
     margin-right: auto;
+  }
+
+  #main_article {
+    display: flex;
+    gap: 30px;
+  }
+
+  #content_img {
+    max-width: 60%;
+    margin-right: auto;
+  }
+
+  #content_text {
+    width: 40%;
+  }
+
+  #content_header {
+    margin-bottom: 10px;
+  }
+
+  #content_intro {
+    margin-bottom: 10px;
+  }
+
+  #main_article {
+    margin-bottom: 40px;
+  }
+
+  #main_article:not(:first-child) {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  main {
+    padding: 0 70px;
+  }
+
+  #main_article {
+    margin-bottom: 40px;
+  }
+
+  #main_article:not(:first-child) {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  main {
+    padding: 0 100px;
+  }
+
+  #main_article {
+    margin-bottom: 50px;
+  }
+
+  #main_article:not(:first-child) {
+    margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    padding: 0 30px;
+  }
+
+  .subscribe_link{
+    font-size: 10px;
+    font-family: 'Merriweather sans';
+    font-weight: 200;
   }
 }

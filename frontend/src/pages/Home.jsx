@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import styles from './home.module.css'
 import { FaRss } from 'react-icons/fa'
 import { MdPostAdd } from 'react-icons/md'
@@ -30,47 +31,41 @@ function Home() {
 
         <div id={styles.content}>
           <div id={styles.articles}>
-            <article>
+            <article id={styles.main_article}>
               <div id={styles.content_img}>
-                <img src={Bible} alt="an image should be here " />
+                <a href="">
+                  <img src={Bible} alt="an image should be here " />
+                </a>
               </div>
 
               <div id={styles.content_text}>
                 <h2 id={styles.content_header}>
-                  Featured Book: Inclusion on Purpose
+                  <a href="#" className={styles.article_link}>
+                    Featured Book: Inclusion on Purpose
+                  </a>
                 </h2>
-                <p id={styles.content_intro}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Animi, ratione accusantium! Consequuntur, deserunt reiciendis
-                  corporis molestias ab voluptatibus, quisquam magni accusamus
-                  nisi est sequi fugit, quibusdam delectus. Iure, corporis
-                  saepe?
-                </p>
+                <h5 id={styles.content_intro}>by Bodunrin David</h5>
                 <h5 id={styles.content_date}>Monday 5th september 2005</h5>
-                <hr />
               </div>
             </article>
 
-            {/* <article>
+            <article id={styles.main_article}>
               <div id={styles.content_img}>
-                <img src={Bible} alt="an image should be here " />
+                <a href="">
+                  <img src={Bible} alt="an image should be here " />
+                </a>
               </div>
 
               <div id={styles.content_text}>
                 <h2 id={styles.content_header}>
-                  Featured Book: Inclusion on Purpose
+                  <a href="#" className={styles.article_link}>
+                    Featured Book: Inclusion on Purpose
+                  </a>
                 </h2>
-                <p id={styles.content_intro}>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Animi, ratione accusantium! Consequuntur, deserunt reiciendis
-                  corporis molestias ab voluptatibus, quisquam magni accusamus
-                  nisi est sequi fugit, quibusdam delectus. Iure, corporis
-                  saepe?
-                </p>
+                <h5 id={styles.content_intro}>by Bodunrin David</h5>
                 <h5 id={styles.content_date}>Monday 5th september 2005</h5>
-                <hr />
               </div>
-            </article> */}
+            </article>
           </div>
 
           <div id={styles.categories}>
@@ -118,6 +113,7 @@ function Home() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }
