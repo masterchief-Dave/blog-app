@@ -10,7 +10,7 @@ function Home() {
   return (
     <div id={styles.home_section}>
       <Header />
-      <main>
+      <main id={styles.main}>
         <div id={styles.header_content}>
           <h1 id={styles.header}> Blog </h1>
           <div id={styles.commit}>

@@ -4,6 +4,7 @@ import Profile from './pages/profile'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Post from './components/Post'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/post" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </div>

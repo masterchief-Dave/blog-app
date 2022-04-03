@@ -1,8 +1,8 @@
-main {
+
+#main {
   padding: 0 40px;
   margin-top: 55px;
   margin-bottom: 40px;
-  /* background-color: #02060B; */
 }
 
 img {
@@ -40,12 +40,12 @@ img {
   text-decoration: none;
   font-size: 12px;
   margin-right: auto;
-  /* color: #FED18C; */
-  /* color: #d49c6b; */
-  color: #18272f
+  color: #18272f;
+  font-family: 'ibm plex sans';
+  font-weight: 600;
 }
 
-.subscribe_link:hover{
+.subscribe_link:hover {
   color: #d49c6b;
 }
 
@@ -75,7 +75,8 @@ img {
 }
 
 .categories_list a {
-  font-family: 'Merriweather sans';
+  /* font-family: 'Merriweather sans'; */
+  font-family: 'ibm plex sans';
   font-weight: bolder;
   position: relative;
   text-decoration: none;
@@ -128,7 +129,11 @@ img {
 
 /* @ media queries */
 @media screen and (max-width: 767px) {
-  main {
+  /* main {
+    padding: 0 50px;
+  } */
+
+  #main {
     padding: 0 50px;
   }
 
@@ -169,16 +174,21 @@ img {
     font-weight: bolder;
   }
 
-  .subscribe_link{
+  .subscribe_link {
     font-size: 12px;
     font-weight: 200;
-    font-family: 'Merriweather sans';
+    /* font-family: 'Merriweather sans'; */
+    font-family: 'ibm plex sans';
   }
 
 }
 
 @media screen and (min-width: 768px) {
-  main {
+  /* main {
+    padding: 0 60px;
+  } */
+
+  #main {
     padding: 0 60px;
   }
 
@@ -208,7 +218,7 @@ img {
     width: auto;
   }
 
-  .subscribe_link{
+  .subscribe_link {
     font-family: 'Merriweather sans';
     margin-right: 10px;
     font-weight: 300;
@@ -257,7 +267,11 @@ img {
 }
 
 @media screen and (min-width: 900px) {
-  main {
+  /* main {
+    padding: 0 70px;
+  } */
+
+  #main {
     padding: 0 70px;
   }
 
@@ -271,7 +285,11 @@ img {
 }
 
 @media screen and (min-width: 1200px) {
-  main {
+  /* main {
+    padding: 0 100px;
+  } */
+
+  #main {
     padding: 0 100px;
   }
 
@@ -285,11 +303,15 @@ img {
 }
 
 @media screen and (max-width: 480px) {
-  main {
+  /* main {
+    padding: 0 30px;
+  } */
+
+  #main {
     padding: 0 30px;
   }
 
-  .subscribe_link{
+  .subscribe_link {
     font-size: 10px;
     font-family: 'Merriweather sans';
     font-weight: 200;

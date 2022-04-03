@@ -11,14 +11,26 @@ function Footer() {
             <div id={styles.footer_follow}>
               <h3 id={styles.follow_us}>Follow us</h3>
               <div id={styles.footer_social}>
-                <a href="#">
-                  <FaFacebookSquare size={30} fill="#fafaff" />
+                <a href="#" className={styles.social}>
+                  <FaFacebookSquare
+                    size={30}
+                    fill="#fafaff"
+                    className={styles.social_links}
+                  />
                 </a>
-                <a href="#">
-                  <FaTwitterSquare size={30} fill="#fafaff" />
+                <a href="#" className={styles.social}>
+                  <FaTwitterSquare
+                    size={30}
+                    fill="#fafaff"
+                    className={styles.social_links}
+                  />
                 </a>
-                <a href="#">
-                  <FaLinkedin size={30} fill="#fafaff" />
+                <a href="#" className={styles.social}>
+                  <FaLinkedin
+                    size={30}
+                    fill="#fafaff"
+                    className={styles.social_links}
+                  />
                 </a>
               </div>
             </div>
@@ -28,7 +40,7 @@ function Footer() {
             Subscribe to out newsletter and get top stories.
           </h3>
 
-          <form action="">
+          <form action="" id={styles.form}>
             <input
               type="text"
               placeholder="enter email"

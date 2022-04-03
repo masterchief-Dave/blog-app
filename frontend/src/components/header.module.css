@@ -3,7 +3,25 @@
   align-items: center;
   padding: 10px 20px;
   font-family: 'Merriweather Sans';
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.17) 0px 3px 5px;
+
+  background-color: #1f2937;
+  /* new code */
+  /* margin-bottom: 50px */
+
+}
+
+#login{
+  background-color: #cf583a;
+  padding: 7px 13px;
+  border-radius: 3px;
+}
+
+#register{
+
+  background-color: #134074;
+  border-radius: 3px;
+  padding: 7px 13px;
 }
 
 #header_1 {
@@ -11,12 +29,13 @@
 }
 
 #navbar {
-  width: 30%;
+  min-width: 30%;
 }
 
 #navbar_list {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 #navbar_none {
@@ -28,15 +47,18 @@
   position: relative;
   text-decoration: none;
   font-weight: 600;
+  color: #fafaff;
+  font-family: 'ibm plex sans';
+  font-weight: 600;
 }
 
-#navbar_list li a::before {
+.navbar_link::before{
   content: '';
   position: absolute;
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background-color: #18272f;
+  background-color: #fafaff;
   bottom: 0;
   left: 0;
   transform-origin: right;
@@ -44,7 +66,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-#navbar_list li a:hover::before {
+.navbar_link:hover::before{
   transform-origin: left;
   transform: scaleX(1);
 }
@@ -53,20 +75,21 @@
   #header {
     display: block;
     padding: 0;
-    min-height: 10vh;
+   height: auto;
   }
 
   #header_1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 6px 15px;
   }
 
   #navbar {
     width: 100%;
-    min-height: 85vh;
-    padding: 20px 30px;
+    /* min-height: 85vh; */
+    height: auto;
+    padding: 10px 20px;
   }
 
   #navbar_list {
@@ -74,10 +97,21 @@
     width: 100%;
   }
 
-  #navbar_list li {
-    border-bottom: 2px solid #000;
-    padding: 30px 0;
+  #navbar_list li{
+    padding: 10px 0;
+    /* margin-bottom: 5px; */
   }
+
+  #login{
+    margin-bottom: 5px;
+  }
+
+  #navbar_list li a {
+    font-family: 'ibm plex sans';
+    font-weight: 600;
+    padding-left: 4px;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -97,9 +131,9 @@
     column-gap: 25px;
   }
 
-  #navbar_list li {
+  /* #navbar_list li {
     padding: 5px;
-  }
+  } */
 }
 
 @media screen and (min-width: 900px) {
