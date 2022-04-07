@@ -1,6 +1,6 @@
 #main {
-    background-image: url('./../img/bg.svg');
-    background-color: rgba(0, 0, 0, .5);
+    background-image: url("./../img/bg.svg");
+    background-color: rgba(0, 0, 0, 0.5);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -12,7 +12,6 @@
     padding-top: 40px;
     padding-bottom: 50px;
 }
-
 
 #section_1 h1 {
     text-align: center;
@@ -34,7 +33,7 @@
     max-width: 75%;
     margin: 0 auto;
     padding: 15px;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 
     box-shadow: rgba(0, 0, 0, 80%) 0px 0px 16px;
@@ -53,10 +52,10 @@
     padding: 14px 8px;
     outline: none;
     border: none;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-size: 17px;
-    border: 1px solid rgba(229, 231, 235, .4);
+    border: 1px solid rgba(229, 231, 235, 0.4);
     line-height: 12px;
     margin-bottom: 20px;
 }
@@ -67,7 +66,7 @@ button {
     border-radius: 3px;
     outline: none;
     border: none;
-    border: 1px solid rgba(229, 231, 235, .4);
+    border: 1px solid rgba(229, 231, 235, 0.4);
     font-size: 14px;
     font-family: montserrat;
 }
@@ -84,7 +83,6 @@ button {
 }
 
 @media screen and (max-width: 700px) {
-
     #section_1 {
         padding: 0px;
     }
@@ -93,7 +91,7 @@ button {
         max-width: 100%;
         margin: 0 auto;
         padding: 15px;
-        background-color: rgba(0, 0, 0, .5);
+        background-color: rgba(0, 0, 0, 0.5);
         border-radius: 0px;
         box-shadow: none;
     }
@@ -103,7 +101,7 @@ button {
     }
 
     #button_box {
-        width: 70%
+        width: 70%;
     }
 }
 
@@ -124,12 +122,12 @@ button {
         width: 80%;
     }
 
-    #img{
+    #img {
         max-width: 200px;
         margin: 0 auto;
     }
 
-    #header{
+    #header {
         margin-bottom: 0;
     }
 }

@@ -4,7 +4,7 @@ import Profile from './pages/profile'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'
-import Post from './components/Post'
+import Post from './pages/Post'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {

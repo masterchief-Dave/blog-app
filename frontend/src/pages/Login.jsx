@@ -1,7 +1,7 @@
-import Header from './../components/Header'
-import Footer from '../components/Footer'
-import styles from './register.module.css'
-import login from './../img/login.svg'
+import Header from "./../components/Header";
+import Footer from "../components/Footer";
+import styles from "./register.module.css";
+import login from "./../img/login.svg";
 
 function Login() {
   return (
@@ -35,7 +35,7 @@ function Login() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
