@@ -1,0 +1,77 @@
+main {
+  font-family: "montserrat";
+}
+
+#editor_container {
+  max-width: 700px;
+  margin: 30px auto 40px;
+  margin-bottom: 40px;
+}
+
+/* this one encompasses both the toolbar and the editor */
+.editor_wrapper {
+  border: 1px solid #1f2937;
+  margin-bottom: 30px;
+}
+
+/* this is the style for the editing part */
+.editor_class {
+  height: 300px;
+  overflow-y: scroll;
+  color: #1f2937;
+  /* color: #fafaff; */
+}
+
+.toolbar_class {
+  background-color: #1f2937;
+  color: #fafaff;
+}
+
+#form {
+  display: block;
+}
+
+#form h4 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+#file_container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+  border: 1px solid #1f2937;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+#file {
+  padding: 8px 12px;
+}
+
+#file::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+#file::after {
+  height: 100%;
+  display: inline-block;
+}
+
+#file::before {
+  content: "choose file";
+  display: inline-block;
+  font-family: "montserrat";
+  height: 100%;
+}
+
+.final_btn {
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
+
+.final_btn button:hover {
+  background-color: #1f2937;
+  color: #fafaff;
+}
