@@ -14,26 +14,29 @@ function profile() {
         <div id={styles.editor_container}>
 
           <form action="" id={styles.form}>
-            <div>
-
-              <h4> select the blog header image </h4>
-              <div id={styles.file_container}>
-                <label class={styles.file}>
-                  <input type="file" id={styles.file} aria-label="File browser example" />
-                  <span class={styles.file_custom}></span>
-                </label>
+            <div id={styles.form_body_container}>
+              <h4 id={styles.picture_label}> Choose the blog header image </h4>
+              <div id={styles.form_file_container}>
+                <div id={styles.file_container}>
+                  <label class={styles.file}>
+                    <input type="file" id={styles.file} aria-label="File browser example" className={styles.input} />
+                  </label>
+                </div>
               </div>
 
-              <div id={styles.form_header_container}>
-                <input type="text" placeholder='topic' />
+              <div id={styles.form_header_container} className={styles.form_body}>
+                <label htmlFor="">Enter the topic of this post </label>
+                <input type="text" placeholder='topic' className={styles.input} />
               </div>
 
-              <div id={styles.form_summary_container}>
-                <input type="text" placeholder='summary' />
+              <div id={styles.form_summary_container} className={styles.form_body}>
+                <label htmlFor="form_summary">Enter the summary of this post </label>
+                <textarea type="text" placeholder='summary' className={styles.input} id={styles.form_summary} />
               </div>
 
-              <div id={styles.form_cat_container}>
-                <select name="" id="">
+              <div id={styles.form_cat_container} className={styles.form_body}>
+                <label htmlFor="">select the category for this post</label>
+                <select name="" id="" className={styles.input}>
                   <option> News </option>
                   <option> Programming </option>
                   <option> Life </option>

@@ -3,7 +3,7 @@ main {
 }
 
 #editor_container {
-  max-width: 700px;
+  max-width: 600px;
   margin: 30px auto 40px;
   margin-bottom: 40px;
 }
@@ -36,33 +36,10 @@ main {
   font-weight: 600;
 }
 
-#file_container {
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 30px;
-  border: 1px solid #1f2937;
-  width: fit-content;
-  border-radius: 5px;
-}
-
-#file {
-  padding: 8px 12px;
-}
-
 #file::-webkit-file-upload-button {
-  visibility: hidden;
-}
-
-#file::after {
-  height: 100%;
-  display: inline-block;
-}
-
-#file::before {
-  content: "choose file";
-  display: inline-block;
-  font-family: "montserrat";
-  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .final_btn {
@@ -74,4 +51,30 @@ main {
 .final_btn button:hover {
   background-color: #1f2937;
   color: #fafaff;
+}
+
+.input {
+  outline: none;
+  border: 1px solid #1f2937;
+  padding: 8px 12px;
+  width: 400px;
+  background-color: transparent;
+  border-radius: 4px;
+  font-family: "Montserrat";
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.form_body label {
+  display: block;
+  font-weight: 600;
+}
+
+#picture_label {
+  font-size: 16px;
+}
+
+#form_body_container {
+  display: flex;
+  flex-direction: column;
 }
