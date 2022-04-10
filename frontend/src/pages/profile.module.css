@@ -8,25 +8,6 @@ main {
   margin-bottom: 40px;
 }
 
-/* this one encompasses both the toolbar and the editor */
-.editor_wrapper {
-  border: 1px solid #1f2937;
-  margin-bottom: 30px;
-}
-
-/* this is the style for the editing part */
-.editor_class {
-  height: 300px;
-  overflow-y: scroll;
-  color: #1f2937;
-  /* color: #fafaff; */
-}
-
-.toolbar_class {
-  background-color: #1f2937;
-  color: #fafaff;
-}
-
 #form {
   display: block;
 }
