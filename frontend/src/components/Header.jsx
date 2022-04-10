@@ -11,7 +11,7 @@ function Header() {
     setClick((prev) => !prev)
   }
 
-  console.log(click)
+  // console.log(click)
   return (
     <div id={styles.header}>
       <div id={styles.header_1}>

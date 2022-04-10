@@ -1,0 +1,20 @@
+.quill {
+  margin-bottom: 30px;
+}
+
+.ql-editor {
+  height: 300px;
+  margin-bottom: 30px;
+}
+
+.ql-container {
+  height: 300px;
+  margin-bottom: 30px;
+}
+
+.ql-toolbar {
+  background: #eaecec;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+  border-bottom: none;
+}
