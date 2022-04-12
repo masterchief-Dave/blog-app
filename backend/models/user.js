@@ -45,30 +45,31 @@ const userSchema = new mongoose.Schema({
   position: {
     type: String,
   },
-  image: {
-    type: String,
-  },
   active: {
     type: Boolean,
     default: false,
   },
   photo: {
-    type: String
+    type: String,
   },
   position: {
-    type: String
+    type: String,
   },
   twitter: {
-    type: String
+    type: String,
+    default: "",
   },
   github: {
-    type: String
+    type: String,
+    default: "",
   },
   stackoverflow: {
-    type: String
+    type: String,
+    default: "",
   },
   linkedin: {
-    type: String
+    type: String,
+    default: "",
   },
   passwordChangedAt: {
     type: Date,

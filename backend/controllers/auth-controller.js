@@ -21,6 +21,11 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
     photo: req.body.photo,
+    twitter: req.body.twitter,
+    github: req.body.github,
+    linkedin: req.body.linkedin,
+    stackoverflow: req.body.stackoverflow,
+    position: req.body.position,
   });
 
   if (!user) return next(new AppError("Error creating user", "401"));
