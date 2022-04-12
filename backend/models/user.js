@@ -46,6 +46,24 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  photo: {
+    type: String
+  },
+  position: {
+    type: String
+  },
+  twitter: {
+    type: String
+  },
+  github: {
+    type: String
+  },
+  stackoverflow: {
+    type: String
+  },
+  linkedin: {
+    type: String
+  },
   passwordChangedAt: {
     type: Date
   },
