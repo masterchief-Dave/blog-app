@@ -18,11 +18,13 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
+    trim: true,
     required: [true, "A user should have a valid email"],
   },
   password: {
     type: String,
     minlength: 6,
+    trim: true,
     required: [true, "A user should have a password"],
     // select: false
   },

@@ -79,9 +79,8 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email: email }).select("+password");
 
-  console.log(user);
-
-  if (!user.active)
+  // console.log(user);
+  if (user?.active === false)
     return next(new AppError("Please activate your account", "401"));
 
   if (!user)
@@ -91,10 +90,13 @@ exports.login = catchAsync(async (req, res, next) => {
         "404"
       )
     );
+  // console.log(user);
 
   const auth = await user.comparePassword(password);
   if (!auth)
-    return next(new AppError("Email or Password is not correct, try again"));
+    return next(
+      new AppError("Email or Password is not correct, try again", "401")
+    );
 
   const token = signToken(user._id);
 

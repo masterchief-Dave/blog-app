@@ -1,11 +1,11 @@
-import './App.css'
+import "./App.css";
 
-import Profile from './pages/profile'
-import Home from './pages/Home'
-import Register from './pages/Register'
-import Login from './pages/Login'
-import Post from './pages/Post'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Profile from "./pages/Profile";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Post from "./pages/Post";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

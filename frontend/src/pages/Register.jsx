@@ -1,9 +1,47 @@
 import Header from './../components/Header'
 import Footer from './../components/Footer'
 import styles from './register.module.css'
-import signup from './../img/signup.svg'
+import signupimg from './../img/signup.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { reset, signup } from './../features/auth/auth-slice'
+import { useState } from 'react'
+import { unwrapResult } from '@reduxjs/toolkit'
 
 function Register() {
+  const dispatch = useDispatch()
+  const { loading, isError, isSuccess, message } = useSelector((state) => state.auth)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    passwordConfirm: ''
+  })
+
+  const handleChange = (e) => {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value
+      }
+    })
+  }
+
+  // console.log(formData)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const result = await dispatch(signup(formData))
+      const response = unwrapResult(result)
+      console.log(response)
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
   return (
     <div>
       <Header />
@@ -11,15 +49,15 @@ function Register() {
         <section id={styles.section_1}>
           <div id={styles.form_container}>
             <div id={styles.img_container}>
-              <img src={signup} id={styles.img} alt="signup" />
+              <img src={signupimg} id={styles.img} alt="signup" />
             </div>
             <h1>Register</h1>
-            <form action="" id={styles.form}>
-              <input type="text" placeholder="Firstname" />
-              <input type="text" placeholder="Lastname" />
-              <input type="text" placeholder="email" />
-              <input type="password" placeholder="password" />
-              <input type="password" placeholder="confirm password" />
+            <form id={styles.form} onSubmit={handleSubmit} autoComplete='off'>
+              <input type="text" placeholder="Firstname" name='firstName' onChange={handleChange} />
+              <input type="text" placeholder="Lastname" name='lastName' onChange={handleChange} />
+              <input type="text" placeholder="email" name='email' onChange={handleChange} />
+              <input type="password" placeholder="password" name='password' onChange={handleChange} />
+              <input type="password" placeholder="confirm password" name='passwordConfirm' onChange={handleChange} />
               <div id={styles.button_box}>
                 <button type="submit" id={styles.button}>
                   Register
