@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { reset, signup } from './../features/auth/auth-slice'
 import { useState } from 'react'
 import { unwrapResult } from '@reduxjs/toolkit'
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
   const dispatch = useDispatch()
   const { loading, isError, isSuccess, message } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -27,8 +29,6 @@ function Register() {
     })
   }
 
-  // console.log(formData)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -36,10 +36,11 @@ function Register() {
       const result = await dispatch(signup(formData))
       const response = unwrapResult(result)
       console.log(response)
+      await dispatch(reset())
+      navigate('/')
     } catch (err) {
       console.log(err)
     }
-
   }
 
   return (

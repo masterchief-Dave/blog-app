@@ -29,12 +29,12 @@ export const login = createAsyncThunk("auth/login", async (userData, thunk) => {
 
   localStorage.setItem("user", JSON.stringify(data));
   return thunk.fulfillWithValue(data);
-
   //   return data;
 });
 
+const user = JSON.parse(localStorage.getItem("user"));
 const initialState = {
-  user: {},
+  user: user ? JSON.parse(localStorage.getItem("user")) : undefined,
   users: [],
   isSuccess: false,
   loading: true,

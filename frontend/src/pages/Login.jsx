@@ -6,20 +6,19 @@ import { reset, login } from './../features/auth/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from "react";
 import { unwrapResult } from '@reduxjs/toolkit'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
   const dispatch = useDispatch()
   const { message, isError, loading, isSuccess } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
 
-  // console.log(message, isError, loading, isSuccess)
   // login form data
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   })
 
-  // useEffect(() => {
-  // }, [reset])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -27,6 +26,7 @@ function Login() {
       const result = await dispatch(login(formData))
       const response = unwrapResult(result)
       console.log(response)
+      navigate('/')
     } catch (err) {
       console.log(err)
     }
@@ -40,8 +40,6 @@ function Login() {
       }
     })
   }
-
-  // console.log(formData)
 
   return (
     <div>
