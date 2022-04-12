@@ -1,6 +1,6 @@
 import './App.css'
 
-import Profile from './pages/profile'
+import Profile from './pages/Profile'
 import Home from './pages/Home'
 import Register from './pages/Register'
 import Login from './pages/Login'

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import Header from './../components/Header'
-import Footer from './../components/Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import styles from './profile.module.css'
 import './editor.css'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
-function profile() {
+function Profile() {
   const [editor, setEditor] = useState('')
 
   const handleEditorChange = (e) => {
@@ -125,4 +125,4 @@ function profile() {
   )
 }
 
-export default profile
+export default Profile

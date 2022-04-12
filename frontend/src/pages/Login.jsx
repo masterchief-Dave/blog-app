@@ -2,6 +2,7 @@ import Header from "./../components/Header";
 import Footer from "../components/Footer";
 import styles from "./register.module.css";
 import login from "./../img/login.svg";
+import user from './../img/user2.svg'
 
 function Login() {
   return (
@@ -11,6 +12,7 @@ function Login() {
         <section id={styles.section_1}>
           <div id={styles.form_container}>
             <div id={styles.img_container}>
+              <img src={user} alt="" />
               <img src={login} alt="login" id={styles.img} />
             </div>
             <h1>Login</h1>

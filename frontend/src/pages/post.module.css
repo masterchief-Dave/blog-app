@@ -244,10 +244,12 @@ h4 {
     display: flex;
     align-items: center;
     column-gap: 5px;
+    transition: all .3s ease-in;
 }
 
 #comments_btn:hover {
     background-color: #1f2937;
+    transition: all .3s ease-in;
     color: #fafaff;
 }
 
