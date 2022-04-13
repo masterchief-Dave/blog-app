@@ -6,6 +6,7 @@ import { FaPaperPlane } from 'react-icons/fa'
 import { GoArrowSmallRight } from 'react-icons/go'
 import { HiOutlinePlusSm } from 'react-icons/hi'
 import styles from './post.module.css'
+// import 
 
 function Post() {
   return (
