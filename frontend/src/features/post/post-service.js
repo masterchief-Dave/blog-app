@@ -12,6 +12,21 @@ const createPost = async (postData, token) => {
   return data
 }
 
+const getAllPosts = async () => {
+  const response = await fetch(`http://localhost:8000/api/v1/posts`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+
+  console.log(response)
+
+  const data = await response.json()
+  return data
+}
+
 export const authService = {
-  createPost
+  createPost,
+  getAllPosts
 }

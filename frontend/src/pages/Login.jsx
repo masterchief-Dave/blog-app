@@ -26,7 +26,7 @@ function Login() {
     try {
       const result = await dispatch(login(formData))
       const response = unwrapResult(result)
-      console.log(response)
+      // console.log(response)
       navigate('/')
     } catch (err) {
       console.log(err)

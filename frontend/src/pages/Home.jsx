@@ -5,8 +5,57 @@ import styles from './home.module.css'
 import { FaRss } from 'react-icons/fa'
 import { MdPostAdd } from 'react-icons/md'
 import Bible from './../img/bible.jpg'
+import { useDispatch, useSelector } from 'react-redux'
+import { reset, getPosts } from './../features/post/post-slice'
+import { useEffect } from 'react'
+import { unwrapResult } from '@reduxjs/toolkit'
 
 function Home() {
+  const { message, posts } = useSelector((state) => state.post)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const fn = async () => {
+      try {
+        const response = await dispatch(getPosts())
+        const data = unwrapResult(response)
+        // console.log(data)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    fn()
+  }, [getPosts])
+
+  console.log(posts.data.posts)
+
+  const dataElements =  posts?.data?.posts.map((el) => {
+    return (
+      <>
+        <article id={styles.main_article}>
+          <div id={styles.content_img}>
+            <a href={el._id}>
+              <img src={Bible} alt="an image should be here " />
+            </a>
+          </div>
+
+          <div id={styles.content_text}>
+            <h2 id={styles.content_header}>
+              <a href={el._id} className={styles.article_link}>
+                {el.title}
+              </a>
+            </h2>
+            <h5 id={styles.content_intro}>
+              by {el.user.firstName} {el.user.lastName}
+            </h5>
+            <h5 id={styles.content_date}>{new Date(el.createdAt).toDateString()}</h5>
+          </div>
+        </article>
+      </>
+    )
+  })
+
   return (
     <div id={styles.home_section}>
       <Header />
@@ -31,7 +80,9 @@ function Home() {
 
         <div id={styles.content}>
           <div id={styles.articles}>
-            <article id={styles.main_article}>
+
+            {dataElements}
+            {/* <article id={styles.main_article}>
               <div id={styles.content_img}>
                 <a href="">
                   <img src={Bible} alt="an image should be here " />
@@ -47,9 +98,9 @@ function Home() {
                 <h5 id={styles.content_intro}>by Bodunrin David</h5>
                 <h5 id={styles.content_date}>Monday 5th september 2005</h5>
               </div>
-            </article>
+            </article> */}
 
-            <article id={styles.main_article}>
+            {/* <article id={styles.main_article}>
               <div id={styles.content_img}>
                 <a href="">
                   <img src={Bible} alt="an image should be here " />
@@ -65,7 +116,7 @@ function Home() {
                 <h5 id={styles.content_intro}>by Bodunrin David</h5>
                 <h5 id={styles.content_date}>Monday 5th september 2005</h5>
               </div>
-            </article>
+            </article> */}
           </div>
 
           <div id={styles.categories}>

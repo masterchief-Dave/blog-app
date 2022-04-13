@@ -5,7 +5,7 @@ export const createPost = createAsyncThunk(
   'post/create',
   async (postData, thunk) => {
     const token = thunk.getState().auth.user.token
-    console.log(token)
+    // console.log(token)
     const data = await authService.createPost(postData, token)
 
     if (data.status === ('fail' || 'error')) {
@@ -15,6 +15,16 @@ export const createPost = createAsyncThunk(
     return thunk.fulfillWithValue(data)
   }
 )
+
+export const getPosts = createAsyncThunk('/post/get', async (_, thunk) => {
+  const data = await authService.getAllPosts()
+
+  if (data.status === ('fail' || 'error')) {
+    return thunk.rejectWithValue(data.message)
+  }
+
+  return thunk.fulfillWithValue(data)
+})
 
 const initialState = {
   message: '',
@@ -57,6 +67,22 @@ const postSlice = createSlice({
         state.isSuccess = false
         state.message = action.payload
         state.post = {}
+        state.posts = []
+      })
+      .addCase(getPosts.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(getPosts.fulfilled, (state, action) => {
+        state.loading = false
+        state.posts = action.payload
+        state.isError = false
+        state.isSuccess = true
+      })
+      .addCase(getPosts.rejected, (state, action) => {
+        state.loading = false
+        state.isError = true
+        state.isSuccess = false
+        state.message = action.payload
         state.posts = []
       })
   }
