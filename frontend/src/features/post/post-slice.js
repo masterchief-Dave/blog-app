@@ -4,7 +4,7 @@ import { authService } from './post-service'
 export const createPost = createAsyncThunk(
   'post/create',
   async (postData, thunk) => {
-    const token = thunk.getState().auth
+    const token = thunk.getState().auth.user.token
     console.log(token)
     const data = await authService.createPost(postData, token)
 

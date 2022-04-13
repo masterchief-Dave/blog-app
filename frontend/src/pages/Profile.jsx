@@ -12,7 +12,7 @@ import { unwrapResult } from '@reduxjs/toolkit'
 function Profile() {
   const { post, posts, message, loading } = useSelector((state) => state.post)
   const {user} = useSelector((state) => state.auth)
-  // console.log(user.data.user._id)
+  
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
@@ -33,12 +33,13 @@ function Profile() {
   const handleSubmit = async function (e) {
     e.preventDefault()
     const postData = {
-      user: user.data.user._id,
+      user: user?.data?.user._id,
       title: formData.topic,
       summary: formData.summary,
       category: formData.category,
       postDocument: editor
     }
+    console.log(postData)
 
     try{
       const response = await dispatch(createPost(postData))
@@ -49,14 +50,14 @@ function Profile() {
     }
   }
 
-  console.log(formData)
+  // console.log(formData)
   const [editor, setEditor] = useState('')
   
   const handleEditorChange = (e) => {
     setEditor(e)
   }
 
-  console.log(editor)
+  // console.log(editor)
 
   const toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'], // toggled buttons

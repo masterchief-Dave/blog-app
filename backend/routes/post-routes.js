@@ -1,9 +1,14 @@
-const express = require("express");
-const postController = require("./../controllers/post-controller");
-const router = express.Router();
+const express = require('express')
+const postController = require('./../controllers/post-controller')
+const authController = require('./../controllers/auth-controller')
 
-router.route("/").post(postController.createPost).get(postController.getPosts);
+const router = express.Router()
 
-router.route("/:id").get(postController.getPost);
+router
+  .route('/')
+  .post(authController.protect, postController.createPost)
+  .get(postController.getPosts)
 
-module.exports = router;
+router.route('/:id').get(postController.getPost)
+
+module.exports = router
