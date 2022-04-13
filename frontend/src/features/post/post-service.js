@@ -26,7 +26,20 @@ const getAllPosts = async () => {
   return data
 }
 
+const getPost = async (id) => {
+  const response = await fetch(`http://localhost:8000/api/v1/posts/${id}`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+
+  const data = await response.json()
+  return data
+}
+
 export const authService = {
   createPost,
-  getAllPosts
+  getAllPosts,
+  getPost
 }

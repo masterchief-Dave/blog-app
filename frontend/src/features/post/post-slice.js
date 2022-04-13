@@ -26,6 +26,19 @@ export const getPosts = createAsyncThunk('/post/get', async (_, thunk) => {
   return thunk.fulfillWithValue(data)
 })
 
+export const getPost = createAsyncThunk(
+  '/post/getOne',
+  async (postId, thunk) => {
+    const data = await authService.getPost(postId)
+
+    if (data.status === ('fail' || 'error')) {
+      return thunk.rejectWithValue(data.message)
+    }
+
+    return thunk.fulfillWithValue(data)
+  }
+)
+
 const initialState = {
   message: '',
   post: {},
@@ -84,6 +97,22 @@ const postSlice = createSlice({
         state.isSuccess = false
         state.message = action.payload
         state.posts = []
+      })
+      .addCase(getPost.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(getPost.fulfilled, (state, action) => {
+        state.loading = false
+        state.isError = false
+        state.isSuccess = true
+        state.post = action.payload
+      })
+      .addCase(getPost.rejected, (state, action) => {
+        state.message = action.payload
+        state.loading = false
+        state.isError = true
+        state.isSuccess = false
+        state.post = {}
       })
   }
 })

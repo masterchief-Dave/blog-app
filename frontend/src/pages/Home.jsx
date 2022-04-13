@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { reset, getPosts } from './../features/post/post-slice'
 import { useEffect } from 'react'
 import { unwrapResult } from '@reduxjs/toolkit'
+import { Link } from 'react-router-dom'
 
 function Home() {
   const { message, posts } = useSelector((state) => state.post)
@@ -28,31 +29,31 @@ function Home() {
     fn()
   }, [getPosts])
 
-  console.log(posts.data.posts)
+  // console.log(posts.data.posts)
 
-  const dataElements =  posts?.data?.posts.map((el) => {
+  const dataElements = posts?.data?.posts.map((el) => {
     return (
-      <>
-        <article id={styles.main_article}>
-          <div id={styles.content_img}>
-            <a href={el._id}>
-              <img src={Bible} alt="an image should be here " />
-            </a>
-          </div>
+      <article id={styles.main_article} key={el._id}>
+        <div id={styles.content_img}>
+          <Link to={`/posts/${el._id}`}>
+            <img src={Bible} alt="an image should be here " />
+          </Link>
+        </div>
 
-          <div id={styles.content_text}>
-            <h2 id={styles.content_header}>
-              <a href={el._id} className={styles.article_link}>
-                {el.title}
-              </a>
-            </h2>
-            <h5 id={styles.content_intro}>
-              by {el.user.firstName} {el.user.lastName}
-            </h5>
-            <h5 id={styles.content_date}>{new Date(el.createdAt).toDateString()}</h5>
-          </div>
-        </article>
-      </>
+        <div id={styles.content_text}>
+          <h2 id={styles.content_header}>
+            <Link to={`/posts/${el._id}`} className={styles.article_link}>
+              {el.title}
+            </Link>
+          </h2>
+          <h5 id={styles.content_intro}>
+            by {el.user.firstName} {el.user.lastName}
+          </h5>
+          <h5 id={styles.content_date}>
+            {new Date(el.createdAt).toDateString()}
+          </h5>
+        </div>
+      </article>
     )
   })
 
@@ -80,7 +81,6 @@ function Home() {
 
         <div id={styles.content}>
           <div id={styles.articles}>
-
             {dataElements}
             {/* <article id={styles.main_article}>
               <div id={styles.content_img}>

@@ -1,130 +1,135 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
+const crypto = require('crypto')
 
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     minlength: 2,
     maxlength: 100,
-    required: [true, "A user should have a firstname"],
+    required: [true, 'A user should have a firstname']
   },
   lastName: {
     type: String,
     minlength: 2,
     maxlength: 100,
-    required: [true, "A user should have a lastname"],
+    required: [true, 'A user should have a lastname']
   },
   email: {
     type: String,
     unique: true,
     trim: true,
-    required: [true, "A user should have a valid email"],
+    required: [true, 'A user should have a valid email']
   },
   password: {
     type: String,
     minlength: 6,
     trim: true,
-    required: [true, "A user should have a password"],
+    required: [true, 'A user should have a password']
     // select: false
   },
   passwordConfirm: {
     type: String,
-    required: [true, "please confirm password"],
+    required: [true, 'please confirm password'],
     trim: true,
     validate: {
       validator: function (value) {
-        return this.password === value;
+        return this.password === value
       },
-      message: "Passwords do not match",
-    },
+      message: 'Passwords do not match'
+    }
   },
   role: {
     type: String,
-    enum: ["user", "admin", "moderator"],
-    default: "user",
+    enum: ['user', 'admin', 'moderator'],
+    default: 'user'
   },
   position: {
-    type: String,
+    type: String
   },
   active: {
     type: Boolean,
-    default: false,
+    default: false
   },
   photo: {
-    type: String,
+    type: String
   },
   position: {
     type: String,
+    default: ''
   },
   twitter: {
     type: String,
-    default: "",
+    default: ''
   },
   github: {
     type: String,
-    default: "",
+    default: ''
   },
   stackoverflow: {
     type: String,
-    default: "",
+    default: ''
   },
   linkedin: {
     type: String,
-    default: "",
+    default: ''
+  },
+  userStory: {
+    type: String,
+    default: ''
   },
   passwordChangedAt: {
-    type: Date,
+    type: Date
   },
   passwordResetToken: String,
   passwordResetTokenExpires: Date,
-  accountActivateToken: String,
-});
+  accountActivateToken: String
+})
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    return next();
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next()
   }
-  this.password = await bcrypt.hash(this.password, 12);
-  this.passwordConfirm = undefined;
-  next();
-});
+  this.password = await bcrypt.hash(this.password, 12)
+  this.passwordConfirm = undefined
+  next()
+})
 
 userSchema.methods.comparePassword = async function (password) {
-  const auth = await bcrypt.compare(password, this.password);
+  const auth = await bcrypt.compare(password, this.password)
 
-  return auth;
-};
+  return auth
+}
 
 userSchema.methods.passwordChangedAfter = function (val) {
   if (this.passwordChangedAt) {
-    const auth = this.passwordChangedAt > val;
-    return auth;
+    const auth = this.passwordChangedAt > val
+    return auth
   }
-  return false;
-};
+  return false
+}
 
 userSchema.methods.createPasswordResetToken = function () {
-  const token = crypto.randomBytes(32).toString("hex");
+  const token = crypto.randomBytes(32).toString('hex')
   this.passwordResetToken = crypto
-    .createHash("sha256")
+    .createHash('sha256')
     .update(token)
-    .digest("hex");
+    .digest('hex')
 
-  this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000;
+  this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000
 
-  return token;
-};
+  return token
+}
 
 userSchema.methods.createAccountActivate = function () {
-  const token = crypto.randomBytes(32).toString("hex");
+  const token = crypto.randomBytes(32).toString('hex')
   this.accountActivateToken = crypto
-    .createHash("sha256")
+    .createHash('sha256')
     .update(token)
-    .digest("hex");
+    .digest('hex')
 
-  return token;
-};
+  return token
+}
 
 // userSchema.pre(/^find/, function (next) {
 //   this.find({ active: { $ne: false } })
@@ -132,6 +137,6 @@ userSchema.methods.createAccountActivate = function () {
 //   next()
 // })
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema)
 
-module.exports = User;
+module.exports = User
