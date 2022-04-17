@@ -35,5 +35,11 @@ const postSchema = new mongoose.Schema({
   },
 });
 
+postSchema.pre(/^find/, async function (next) {
+  await this.populate("user");
+
+  next();
+});
+
 const Post = mongoose.model("Post", postSchema);
 module.exports = Post;

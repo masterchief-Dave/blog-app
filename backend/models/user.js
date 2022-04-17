@@ -56,6 +56,7 @@ const userSchema = new mongoose.Schema({
   },
   position: {
     type: String,
+    default: "",
   },
   twitter: {
     type: String,
