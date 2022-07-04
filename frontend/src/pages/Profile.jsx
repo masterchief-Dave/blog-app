@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import styles from './profile.module.css'
 import './editor.css'
-import ReactQuill, {Quill} from 'react-quill'
+import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { reset, createPost } from './../features/post/post-slice'
 import { unwrapResult } from '@reduxjs/toolkit'
+import { useNavigate } from 'react-router-dom'
 
 function Profile() {
+  const navigate = useNavigate()
   const { post, posts, message, loading } = useSelector((state) => state.post)
-  const {user} = useSelector((state) => state.auth)
-  
+  const { user } = useSelector((state) => state.auth)
+
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
@@ -39,20 +41,27 @@ function Profile() {
       category: formData.category,
       postDocument: editor
     }
-    console.log(postData)
+    // console.log(postData)
 
-    try{
+    try {
       const response = await dispatch(createPost(postData))
       const data = await unwrapResult(response)
-      console.log(data)
-    }catch(err){
+      // console.log(data)
+      const resetForm = {
+        topic: '',
+        summary: '',
+        category: ''
+      }
+      setFormData(resetForm)
+      navigate('/')
+    } catch (err) {
       console.log(err)
     }
   }
 
   // console.log(formData)
   const [editor, setEditor] = useState('')
-  
+
   const handleEditorChange = (e) => {
     setEditor(e)
   }
@@ -112,10 +121,10 @@ function Profile() {
   return (
     <div>
       <Header />
-      <main>
+      <main className=''>
         <section>
           {' '}
-          <h1> Share your thought 😀🤔💭</h1>{' '}
+          <h1 className='text-center bg-red-500'> Share your thought 😀🤔💭</h1>{' '}
         </section>
         <div id={styles.editor_container}>
           <form id={styles.form} onSubmit={handleSubmit}>
@@ -145,6 +154,7 @@ function Profile() {
                   className={styles.input}
                   onChange={handleChange}
                   name="topic"
+                  value={setFormData.topic}
                 />
               </div>
 
@@ -162,6 +172,7 @@ function Profile() {
                   id={styles.form_summary}
                   onChange={handleChange}
                   name="summary"
+                  value={setFormData.summary}
                 />
               </div>
 
@@ -172,6 +183,7 @@ function Profile() {
                   className={styles.input}
                   onChange={handleChange}
                   name="category"
+                  value={setFormData.category}
                 >
                   <option value="" defaultValue="">
                     Category

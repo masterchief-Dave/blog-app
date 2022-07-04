@@ -43,16 +43,16 @@ class Email {
     welcomeHtml = welcomeHtml.replace('{link}', this.url)
     welcomeHtml = welcomeHtml.replace(
       '{intro}',
-      "Welcome to Blog-app 🥳, we're glad to have you"
+      "Welcome to Blog-app 🥳, we're glad to have you."
     )
     welcomeHtml = welcomeHtml.replace(
       '{desc}',
-      'we are a family here, kindly activate your account by clicking on the link below'
+      'we are a family here, kindly activate your account by clicking on the link below, note that: activation link would expire after 24 hours'
     )
     welcomeHtml = welcomeHtml.replace('{link-text}', 'Activate the account')
     welcomeHtml = welcomeHtml.replace(
       '{final-text}',
-      'Activate your email to verify it is really you and gain access to amazing features ! 😉.'
+      'Activate your email to verify it is really you and gain access to amazing features ! 😉. '
     )
     await this.send(welcomeHtml, 'Welcome 🎈🎊')
   }

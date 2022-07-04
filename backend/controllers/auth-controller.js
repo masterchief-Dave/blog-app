@@ -5,6 +5,7 @@ const User = require("./../models/user");
 const Email = require("./../utils/Email");
 const crypto = require("crypto");
 
+console.log(process.env.JWT_EXPIRES_IN)
 const signToken = (id) => {
   const token = jwt.sign({ id: id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -31,7 +32,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   if (!user) return next(new AppError("Error creating user", "401"));
 
   const activateToken = user.createAccountActivate();
-  console.log(activateToken);
+  // console.log(activateToken);
   await user.save({ validateBeforeSave: false });
   const url = `${req.protocol}://${req.get(
     "host"
@@ -70,7 +71,7 @@ exports.activate = catchAsync(async (req, res, next) => {
   res.status(200).json({
     message: "account verified",
     data: {
-      user,
+      // user,
     },
   });
 });

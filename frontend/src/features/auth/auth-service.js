@@ -1,5 +1,6 @@
+const axios = require('axios')
 const signup = async (userData) => {
-  const reponse = await fetch(`http://localhost:8000/api/v1/users/signup`, {
+  const reponse = await fetch(`/api/v1/users/signup`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -18,16 +19,18 @@ const logout = async () => {
 };
 
 const login = async (userData) => {
-  const response = await fetch(`http://localhost:8000/api/v1/users/login`, {
+  const response = await fetch(`/api/v1/users/login`, {
     method: "POST",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(userData),
   });
-
-  const data = await response.json();
-  return data;
+  const req = await axios.post('/api/v1/users/login', userData)
+  // const data = await response.json();
+  // return data;
+  const data = await req.data
+  return data
 };
 
 export const authService = {
@@ -35,3 +38,5 @@ export const authService = {
   logout,
   login,
 };
+
+// bodunrindavidbond@gmail.com

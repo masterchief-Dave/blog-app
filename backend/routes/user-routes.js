@@ -1,9 +1,7 @@
 const express = require('express')
-const multer = require('multer')
 const authController = require('./../controllers/auth-controller')
 const userController = require('./../controllers/user-controller')
 const router = express.Router()
-const upload = multer({ dest: './../public/img/users' })
 
 // auth controllers
 router.route('/signup').post(authController.signup)
@@ -20,7 +18,7 @@ router
   .route('/updateme')
   .patch(
     authController.protect,
-    upload.single('photo'),
+    userController.uploadUserPhoto,
     userController.updateMe
   )
 module.exports = router

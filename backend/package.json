@@ -1,0 +1,26 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "A blog for Bodunrin David",
+  "main": "server.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit "
+  },
+  "author": "David Bodunrin",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "html-to-text": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.7",
+    "multer": "^1.4.4",
+    "nodemailer": "^6.7.3",
+    "nodemon": "^2.0.15"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.89946089.css",
+    "main.js": "/static/js/main.32e513b2.js",
+    "static/media/bible.jpg": "/static/media/bible.a755351f2a0b26e9dd28.jpg",
+    "static/media/login.svg": "/static/media/login.79872296556418253ca4b3289f856112.svg",
+    "static/media/signup.svg": "/static/media/signup.c052777033ac1d587b24f7d62fa24504.svg",
+    "static/media/bg.svg": "/static/media/bg.78bc7c4dd9afa65635c2.svg",
+    "index.html": "/index.html",
+    "main.89946089.css.map": "/static/css/main.89946089.css.map",
+    "main.32e513b2.js.map": "/static/js/main.32e513b2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.89946089.css",
+    "static/js/main.32e513b2.js"
+  ]
+}

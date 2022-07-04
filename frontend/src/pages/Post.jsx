@@ -49,13 +49,13 @@ function Post() {
                   <ul id={styles.header_tags_list}>
                     {/* <li>#FULLSTACK DEVELOPMENT</li>
                     <li>#REACT</li> */}
-                    {post.data.post.category}
+                    {post?.data?.post?.category}
                   </ul>
                 </div>
-                <h1>{post.data.post.title}</h1>
+                <h1>{post?.data?.post?.title}</h1>
 
                 <div id={styles.header_summary}>
-                  <h3>{post.data.post.summary}</h3>
+                  <h3>{post?.data?.post?.summary}</h3>
                 </div>
 
                 <div className={styles.header_author}>
@@ -65,8 +65,8 @@ function Post() {
                   <div className={styles.author_role}>
                     <h3>
                       {' '}
-                      {post.data.post.user.firstName}{' '}
-                      {post.data.post.user.lastName}{' '}
+                      {post?.data?.post?.user?.firstName}{' '}
+                      {post?.data?.post?.user?.lastName}{' '}
                     </h3>
                     <h4> Fullstack developer</h4>
                   </div>
@@ -75,10 +75,10 @@ function Post() {
                 <div id={styles.header_post_info}>
                   <h3>
                     LAST UPDATED ON:{' '}
-                    {new Date(post.data.post.createdAt).toDateString()}
+                    {new Date(post?.data?.post?.createdAt).toDateString()}
                     <span>
                       <BsBook size={15} />{' '}
-                      <span>{post.data.post.timeToRead} min read</span>
+                      <span>{post?.data?.post?.timeToRead} min read</span>
                     </span>
                   </h3>
                 </div>
@@ -88,7 +88,7 @@ function Post() {
             <div id={styles.line_1}></div>
 
             <div id={styles.blog_text}>
-              <div dangerouslySetInnerHTML={{__html: post.data.post.postDocument}}/>
+              <div dangerouslySetInnerHTML={{__html: post?.data?.post?.postDocument}}/>
               </div>
 
             <div id={styles.author_profile}>
@@ -99,8 +99,8 @@ function Post() {
                 <div className={styles.author_role}>
                   <h3>
                     {' '}
-                    {post.data.post.user.firstName}{' '}
-                    {post.data.post.user.lastName}{' '}
+                    {post?.data?.post?.user?.firstName}{' '}
+                    {post?.data?.post?.user?.lastName}{' '}
                   </h3>
                   <h4> Fullstack developer</h4>
                 </div>

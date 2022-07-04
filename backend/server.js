@@ -1,10 +1,10 @@
 require("dotenv").config({
-  path: "./backend/.env",
+  path: "./.env",
 });
 const mongoose = require("mongoose");
 const app = require("./app");
 
-const uri = process.env.URI;
+const uri = process.env.NODE_ENV === 'development' ? process.env.URI : process.env.TEST_URI
 mongoose
   .connect(uri, {
     useNewUrlParser: true,

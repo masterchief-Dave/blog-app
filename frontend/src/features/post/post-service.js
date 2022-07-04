@@ -1,5 +1,5 @@
 const createPost = async (postData, token) => {
-  const response = await fetch(`http://localhost:8000/api/v1/posts`, {
+  const response = await fetch(`/api/v1/posts`, {
     method: 'POST',
     body: JSON.stringify(postData),
     headers: {
@@ -13,7 +13,7 @@ const createPost = async (postData, token) => {
 }
 
 const getAllPosts = async () => {
-  const response = await fetch(`http://localhost:8000/api/v1/posts`, {
+  const response = await fetch(`/api/v1/posts`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json'
@@ -27,7 +27,7 @@ const getAllPosts = async () => {
 }
 
 const getPost = async (id) => {
-  const response = await fetch(`http://localhost:8000/api/v1/posts/${id}`, {
+  const response = await fetch(`/api/v1/posts/${id}`, {
     method: 'GET',
     headers: {
       'content-type': 'application/json'
